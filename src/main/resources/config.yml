@@ -1,0 +1,52 @@
+#  __      __       .__
+# /  \    /  \ ____ |  |   ____  ____   _____   ___________
+# \   \/\/   // __ \|  | _/ ___\/  _ \ /     \_/ __ \_  __ \
+#  \        /\  ___/|  |_\  \__(  <_> )  Y Y  \  ___/|  | \/
+#   \__/\  /  \___  >____/\___  >____/|__|_|  /\___  >__|
+#        \/       \/          \/            \/     \/
+# Configuration file for Welcomer plugin made by Gregzee <3
+
+PermissionReload: "welcomer.reload" # Permission node that the player must have to reload the configuration (/welcomer reload)
+permissionMenu: "welcomer.menu" # Permission node that the player must have to configure the plugin from in-game through the gui (/welcomer menu)
+
+Variables: # These contain all the placeholders you can use inside the messages.
+  ServerName: "MyServer" # {ServerName}
+  ServerIP: "MyServer.net" # {ServerIP}
+  ServerPort: "25655" # {ServerPort}
+  ServerStore: "store.myserver.net" # {Store}
+  ServerDiscord: "https://discord.gg/MyServer" # {Discord}
+
+# -----------------------------
+# Full list of variables:
+# {ServerName}, {ServerIP},
+# {ServerPort}, {Store},
+# {Discord}, {PlayerName},
+# {PlayerDisplayName}
+# {OnlinePlayers}, {MaxPlayers}
+# more to be added overtime
+# ----------------------------
+
+
+MOTD: # Message of the day
+  enabled: true # true false = disabled | true = enabled
+  message: # The message which is sent to the player if they join the server
+    - "&7-=-=-=-=-=-=-=-=-=-"
+    - "&aWelcome to &2{ServerName}"
+    - "&aOnline players: &2{OnlinePlayers}/{MaxPlayers}"
+    - "&aDiscord: &2{Discord}"
+    - "&aStore: &2{Store}"
+    - "&7-=-=-=-=-=-=-=-=-=-"
+
+JoinWelcomer: # This happens when a player joins or leaves the server
+  enabled: true # false = disabled | true = enabled
+  First-Join-Message: "&aWelcome &2{Player} &afor joining &2{ServerName} &afor the first time ever."
+  Join-Message: "&aWelcome back to &2{ServerIP}:{ServerPort} &2{PlayerName}"
+  Quit-Message: "&c{PlayerName} has left the server. :("
+
+TitleWelcomer: # This shows a big title with text on the players screen when joining
+  enabled: true # false = disabled | true = enabled
+  Title: "&aWelcome to &2&n{ServerName}"
+  SubTitle: "&a{PlayerDisplayName}"
+  FadeIn: 20 # In ticks
+  Stay: 60 # In ticks
+  FadeOut: 20 # In ticks
