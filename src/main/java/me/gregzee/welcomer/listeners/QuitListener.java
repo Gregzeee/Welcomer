@@ -16,14 +16,16 @@ public class QuitListener implements Listener {
         this.plugin = plugin;
     }
 
+    // This method is called when a player quits the server
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent e) {
+        // Get the player who quit
         Player p = e.getPlayer();
 
+        // Check if the JoinWelcomer feature is enabled in the plugin's configuration
         if (plugin.getConfig().getBoolean("JoinWelcomer.enabled")) {
-
+            // Broadcast a leave message to all players with color codes translated
             Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', plugin.formatString(plugin.getConfig().getString("JoinWelcomer.Leave-Message"), p)));
-
         }
     }
 }

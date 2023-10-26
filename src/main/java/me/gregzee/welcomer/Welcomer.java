@@ -15,27 +15,35 @@ public final class Welcomer extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
 
+        // Load and save the default configuration if it doesn't exist
         getConfig().options().copyDefaults();
         saveDefaultConfig();
 
+        // Register event listeners for player joins, quits, and inventory clicks
         getServer().getPluginManager().registerEvents(new QuitListener(this), this);
         getServer().getPluginManager().registerEvents(new JoinListener(this), this);
         getServer().getPluginManager().registerEvents(new MenuHandler(this), this);
+
+        // Register the main command and its tab completer
         getCommand("welcomer").setExecutor(new MainCommand(this));
         getCommand("welcomer").setTabCompleter(new MainCommandCompleter());
 
+        // Log a message indicating that the plugin has started up without issues
         getLogger().info("-------------------------------");
         getLogger().info("Welcomer");
         getLogger().info("Made by Gregzee <3");
         getLogger().info("Started up with no issues.");
         getLogger().info("-------------------------------");
-
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+
+        // Save the configuration
         saveConfig();
+
+        // Log a message indicating that the plugin has been disabled without issues
         getLogger().info("-------------------------------");
         getLogger().info("Welcomer");
         getLogger().info("Made by Gregzee <3");
@@ -43,6 +51,7 @@ public final class Welcomer extends JavaPlugin {
         getLogger().info("-------------------------------");
     }
 
+    // Format a string by replacing placeholders with server and player information
     public String formatString(String message, Player p) {
         int onlinePlayers = Bukkit.getOnlinePlayers().size();
         String formattedMessage = message.replace("{ServerName}", getConfig().getString("Variables.ServerName"));

@@ -1,9 +1,12 @@
 name: Welcomer
 version: '${project.version}'
 main: me.gregzee.welcomer.Welcomer
-api-version: '1.20'
+api-version: '1.16'
 authors: [Gregzee]
 website: https://gregzee.me
 commands:
   welcomer:
     usage: /<command>
+    aliases:
+      - welc
+    description: Main command of the Welcomer plugin.

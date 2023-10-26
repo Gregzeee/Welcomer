@@ -14,8 +14,11 @@ public class MenuHandler implements Listener {
         this.plugin = plugin;
     }
 
+    // This method is called when a player clicks in an inventory menu
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e) {
+        // Get the player who clicked
         Player p = (Player) e.getWhoClicked();
+        // You can now handle the event for this player, e.g., check which item they clicked and respond accordingly
     }
 }

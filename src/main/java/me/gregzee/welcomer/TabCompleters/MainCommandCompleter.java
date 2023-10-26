@@ -15,11 +15,14 @@ public class MainCommandCompleter implements TabCompleter {
     public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] args) {
         List<String> results = new ArrayList<>();
 
+        // If there's only one argument (i.e., the command name itself)
         if (args.length == 1) {
-            return StringUtil.copyPartialMatches(args[0], Arrays.asList("reload", "help"), new ArrayList<>());
+            // Provide tab-completion suggestions for the first argument
+            // In this case, it provides "reload" and "help" as valid command names
+            return StringUtil.copyPartialMatches(args[0], Arrays.asList("reload", "help"), results);
         }
 
-        return new ArrayList<>();
-
+        // If there are more than one argument, or if the argument is not recognized, return an empty list
+        return results;
     }
 }
