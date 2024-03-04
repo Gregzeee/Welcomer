@@ -1,69 +1,40 @@
 package me.gregzee.welcomer;
 
-import me.gregzee.welcomer.TabCompleters.MainCommandCompleter;
-import me.gregzee.welcomer.commands.MainCommand;
-import me.gregzee.welcomer.listeners.QuitListener;
-import me.gregzee.welcomer.listeners.JoinListener;
-import me.gregzee.welcomer.listeners.MenuHandler;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
+import co.aikar.commands.PaperCommandManager;
+import lombok.Getter;
+import me.gregzee.welcomer.managers.StartupManager;
+import net.kyori.adventure.platform.bukkit.BukkitAudiences;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class Welcomer extends JavaPlugin {
+@Getter
+public class Welcomer extends JavaPlugin {
+
+    private BukkitAudiences adventure;
+    private PaperCommandManager commandManager;
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
+        adventure = BukkitAudiences.create(this);
+        commandManager = new PaperCommandManager(this);
 
-        // Load and save the default configuration if it doesn't exist
-        getConfig().options().copyDefaults();
-        saveDefaultConfig();
+        new StartupManager(this);
 
-        // Register event listeners for player joins, quits, and inventory clicks
-        getServer().getPluginManager().registerEvents(new QuitListener(this), this);
-        getServer().getPluginManager().registerEvents(new JoinListener(this), this);
-        getServer().getPluginManager().registerEvents(new MenuHandler(this), this);
-
-        // Register the main command and its tab completer
-        getCommand("welcomer").setExecutor(new MainCommand(this));
-        getCommand("welcomer").setTabCompleter(new MainCommandCompleter());
-
-        // Log a message indicating that the plugin has started up without issues
-        getLogger().info("-------------------------------");
-        getLogger().info("Welcomer");
-        getLogger().info("Made by Gregzee <3");
-        getLogger().info("Started up with no issues.");
-        getLogger().info("-------------------------------");
+        enableBStats();
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
-
-        // Save the configuration
-        saveConfig();
-
-        // Log a message indicating that the plugin has been disabled without issues
-        getLogger().info("-------------------------------");
-        getLogger().info("Welcomer");
-        getLogger().info("Made by Gregzee <3");
-        getLogger().info("Disabled with no issues.");
-        getLogger().info("-------------------------------");
+        adventure.close();
+        getLogger().info("Plugin has been uninitialized!");
     }
 
-    // Format a string by replacing placeholders with server and player information
-    public String formatString(String message, Player p) {
-        int onlinePlayers = Bukkit.getOnlinePlayers().size();
-        String formattedMessage = message.replace("{ServerName}", getConfig().getString("Variables.ServerName"));
-        formattedMessage = formattedMessage.replace("{ServerIP}", getConfig().getString("Variables.ServerIP"));
-        formattedMessage = formattedMessage.replace("{ServerPort}", getConfig().getString("Variables.ServerPort"));
-        formattedMessage = formattedMessage.replace("{Store}", getConfig().getString("Variables.ServerStore"));
-        formattedMessage = formattedMessage.replace("{Discord}", getConfig().getString("Variables.ServerDiscord"));
-        formattedMessage = formattedMessage.replace("{OnlinePlayers}", Integer.toString(onlinePlayers));
-        formattedMessage = formattedMessage.replace("{PlayerName}", p.getName());
-        formattedMessage = formattedMessage.replace("{PlayerDisplayName}", p.getDisplayName());
-        formattedMessage = formattedMessage.replace("{MaxPlayers}", Integer.toString(Bukkit.getMaxPlayers()));
-
-        return formattedMessage;
+    private void enableBStats() {
+        try {
+            // TODO: Replace 1 with your resource id
+            new Metrics(this, 1);
+        } catch (Exception e) {
+            getLogger().warning("Something went wrong while enabling bStats.\n" + e.getMessage());
+        }
     }
 }
