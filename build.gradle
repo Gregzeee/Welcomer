@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'me.gregzee.welcomer'
-version '1.0.0'
+version '2.0.0'
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8

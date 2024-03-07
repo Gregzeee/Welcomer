@@ -32,7 +32,7 @@ public class Welcomer extends JavaPlugin {
     private void enableBStats() {
         try {
             // TODO: Replace 1 with your resource id
-            new Metrics(this, 1);
+            new Metrics(this, 21222);
         } catch (Exception e) {
             getLogger().warning("Something went wrong while enabling bStats.\n" + e.getMessage());
         }

@@ -2,7 +2,7 @@ package me.gregzee.welcomer.managers;
 
 import co.aikar.commands.PaperCommandManager;
 import me.gregzee.welcomer.Welcomer;
-import me.gregzee.welcomer.commands.TestCommand;
+import me.gregzee.welcomer.commands.PrimaryCommand;
 
 public class StartupManager {
 
@@ -22,7 +22,7 @@ public class StartupManager {
     }
 
     private void registerCommands() {
-        manager.registerCommand(new TestCommand(this.plugin));
+        manager.registerCommand(new PrimaryCommand(this.plugin));
     }
 
     private void registerEvents() {
