@@ -2,6 +2,8 @@ package me.gregzee.welcomer;
 
 import co.aikar.commands.PaperCommandManager;
 import lombok.Getter;
+import me.gregzee.welcomer.listener.JoinListener;
+import me.gregzee.welcomer.listener.QuitListener;
 import me.gregzee.welcomer.managers.StartupManager;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bstats.bukkit.Metrics;
@@ -21,6 +23,7 @@ public class Welcomer extends JavaPlugin {
         new StartupManager(this);
 
         enableBStats();
+
     }
 
     @Override
@@ -31,7 +34,6 @@ public class Welcomer extends JavaPlugin {
 
     private void enableBStats() {
         try {
-            // TODO: Replace 1 with your resource id
             new Metrics(this, 21222);
         } catch (Exception e) {
             getLogger().warning("Something went wrong while enabling bStats.\n" + e.getMessage());

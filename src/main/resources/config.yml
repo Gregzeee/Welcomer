@@ -4,7 +4,7 @@
 #  \        /\  ___/|  |_\  \__(  <_> )  Y Y  \  ___/|  | \/
 #   \__/\  /  \___  >____/\___  >____/|__|_|  /\___  >__|
 #        \/       \/          \/            \/     \/
-# Configuration file for Welcomer plugin made by Gregzee <3
+# Configuration file for Welcomer plugin made by Gregzee
 
 PermissionReload: "welcomer.reload" # Permission node that the player must have to reload the configuration (/welcomer reload)
 permissionMenu: "welcomer.menu" # Permission node that the player must have to configure the plugin from in-game through the gui (/welcomer menu)
@@ -48,5 +48,5 @@ TitleWelcomer: # This shows a big title with text on the players screen when joi
   Title: "&aWelcome to &2&n{ServerName}"
   SubTitle: "&a{PlayerDisplayName}"
   FadeIn: 20 # In ticks
-  Stay: 60 # In ticks[/SPOILER]
+  Stay: 60 # In ticks
   FadeOut: 20 # In ticks
