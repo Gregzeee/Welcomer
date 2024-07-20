@@ -9,11 +9,9 @@ import org.bukkit.Bukkit;
 
 public class StartupManager {
 
-    private final Welcomer plugin;
+    private final Welcomer instance = Welcomer.getInstance();
 
-    public StartupManager(Welcomer plugin) {
-        this.plugin = plugin;
-
+    public StartupManager() {
         load();
     }
 
@@ -24,17 +22,17 @@ public class StartupManager {
     }
 
     private void registerCommands() {
-        plugin.getCommand("welcomer").setExecutor(new PrimaryCommand());
+        instance.getCommand("welcomer").setExecutor(new PrimaryCommand());
     }
 
     private void registerEvents() {
-        plugin.getServer().getPluginManager().registerEvents(new JoinListener(), plugin);
-        plugin.getServer().getPluginManager().registerEvents(new QuitListener(), plugin);
+        instance.getServer().getPluginManager().registerEvents(new JoinListener(), instance);
+        instance.getServer().getPluginManager().registerEvents(new QuitListener(), instance);
     }
 
     private void enableBStats() {
         try {
-            new Metrics(plugin, 21222);
+            new Metrics(instance, 21222);
         } catch (Exception e) {
             Bukkit.getLogger().warning("Something went wrong while enabling bStats.\n" + e.getMessage());
         }

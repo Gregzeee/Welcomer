@@ -10,12 +10,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Welcomer extends JavaPlugin {
 
     @Getter
-    private final Utility utility = new Utility();
+    private static final Utility utility = new Utility();
+
+    @Getter
+	private static Welcomer instance;
 
     @Override
     public void onEnable() {
+        instance = this;
 
-        new StartupManager(this);
+        new StartupManager();
 
         sendEnableMessage();
 
