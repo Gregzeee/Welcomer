@@ -5,3 +5,11 @@ main: me.gregzee.welcomer.Welcomer
 version: '1.0.0'
 api-version: '1.13'
 load: POSTWORLD
+
+commands:
+  welcomer:
+    description: Welcomer command
+    usage: /welcomer <arg>
+    aliases: [welcomer]
+    permission: welcomer.commands.primary
+    permission-message: You do not have permission to use this command
