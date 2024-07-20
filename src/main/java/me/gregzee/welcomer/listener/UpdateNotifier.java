@@ -1,4 +1,4 @@
 package me.gregzee.welcomer.listener;
 
-public class UpdateNotifier {
+public final class UpdateNotifier {
 }

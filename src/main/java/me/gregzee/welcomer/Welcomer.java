@@ -7,7 +7,7 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
 @Getter
-public class Welcomer extends JavaPlugin {
+public final class Welcomer extends JavaPlugin {
 
     @Getter
     private static final Utility utility = new Utility();
