@@ -4,32 +4,21 @@
 #  \        /\  ___/|  |_\  \__(  <_> )  Y Y  \  ___/|  | \/
 #   \__/\  /  \___  >____/\___  >____/|__|_|  /\___  >__|
 #        \/       \/          \/            \/     \/
-# Configuration file for Welcomer plugin made by Gregzee
 
-PermissionReload: "welcomer.reload" # Permission node that the player must have to reload the configuration (/welcomer reload)
-permissionMenu: "welcomer.menu" # Permission node that the player must have to configure the plugin from in-game through the gui (/welcomer menu)
+# Permission node that the player must have to reload the configuration (/welcomer reload)
+PermissionReload: "welcomer.reload"
 
-Variables: # These contain all the placeholders you can use inside the messages.
-  ServerName: "MyServer" # {ServerName}
-  ServerIP: "MyServer.net" # {ServerIP}
-  ServerPort: "25655" # {ServerPort}
-  ServerStore: "store.myserver.net" # {Store}
-  ServerDiscord: "https://discord.gg/MyServer" # {Discord}
+# Permission node that the player must have to configure the plugin from in-game through the gui (/welcomer menu)
+permissionMenu: "welcomer.menu"
 
-# -----------------------------
-# Full list of variables:
-# {ServerName}, {ServerIP},
-# {ServerPort}, {Store},
-# {Discord}, {PlayerName},
-# {PlayerDisplayName}
-# {OnlinePlayers}, {MaxPlayers}
-# more to be added overtime
-# ----------------------------
+# Message of the day
+MOTD:
 
+  # Whether the MOTD feature is enabled or not
+  enabled: true
 
-MOTD: # Message of the day
-  enabled: true # true false = disabled | true = enabled
-  message: # The message which is sent to the player if they join the server
+  # The message that should be sent to the player when they join the server
+  message:
     - "&7-=-=-=-=-=-=-=-=-=-"
     - "&aWelcome to &2{ServerName}"
     - "&aOnline players: &2{OnlinePlayers}/{MaxPlayers}"
@@ -37,16 +26,67 @@ MOTD: # Message of the day
     - "&aStore: &2{Store}"
     - "&7-=-=-=-=-=-=-=-=-=-"
 
-JoinWelcomer: # This happens when a player joins or leaves the server
-  enabled: true # false = disabled | true = enabled
+# Join/Quit messages
+JoinWelcomer:
+
+  # Whether the join/quit messages feature should be enabled
+  enabled: true
+
+  # The message that should be sent when a player joins the server for the first time
   First-Join-Message: "&aWelcome &2{Player} &afor joining &2{ServerName} &afor the first time ever."
+
+  # The message that should be sent when a player joins the server
   Join-Message: "&aWelcome back to &2{ServerIP}:{ServerPort} &2{PlayerName}"
+
+  # The message that should be sent when a player leaves the server
   Quit-Message: "&c{PlayerName} has left the server. :("
 
-TitleWelcomer: # This shows a big title with text on the players screen when joining
-  enabled: true # false = disabled | true = enabled
+# This welcomes players with a title message.
+TitleWelcomer:
+
+  # Whether the Title welcome feature should be enabled
+  enabled: true
+
+  # The title of the title message
   Title: "&aWelcome to &2&n{ServerName}"
+
+  # The subtitle of the title message
   SubTitle: "&a{PlayerDisplayName}"
-  FadeIn: 20 # In ticks
-  Stay: 60 # In ticks
-  FadeOut: 20 # In ticks
+
+  # The time that the title should fade in for in ticks. Default: 20
+  FadeIn: 20
+
+  # The time that the title should stay on the plauers screen in ticks. Default: 60
+  Stay: 60
+
+  # The time that the title should fade out for in ticks. Default: 20
+  FadeOut: 20
+
+ActionBarWelcome:
+
+  # Whether the ActionBar welcome feature should be enabled
+  enabled: true
+
+  # The message that should be sent to the player through the action bar.
+  message: "&aWelcome to &2{ServerName} &a{PlayerDisplayName}"
+
+  # The sound that should be played when the action bar message is sent
+  sound:
+
+    # Whether the sound should be enabled
+    enabled: true
+
+    # The sound that should be played | https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
+    sound: ENTITY_EXPERIENCE_ORB_PICKUP
+
+    # The volume of the sound
+    volume: 1.0
+
+    # The pitch of the sound
+    pitch: 1.0
+
+# The GUI that the player will see when they run /welcomer menu
+GUI:
+
+  # Whether the GUI feature should be enabled
+  enabled: true
