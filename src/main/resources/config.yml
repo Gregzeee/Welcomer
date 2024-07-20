@@ -15,10 +15,10 @@ permissionMenu: "welcomer.menu"
 MOTD:
 
   # Whether the MOTD feature is enabled or not
-  enabled: true
+  Enabled: true
 
   # The message that should be sent to the player when they join the server
-  message:
+  Message:
     - "&7-=-=-=-=-=-=-=-=-=-"
     - "&aWelcome to &2{ServerName}"
     - "&aOnline players: &2{OnlinePlayers}/{MaxPlayers}"
@@ -30,7 +30,7 @@ MOTD:
 JoinWelcomer:
 
   # Whether the join/quit messages feature should be enabled
-  enabled: true
+  Enabled: true
 
   # The message that should be sent when a player joins the server for the first time
   First-Join-Message: "&aWelcome &2{Player} &afor joining &2{ServerName} &afor the first time ever."
@@ -45,7 +45,7 @@ JoinWelcomer:
 TitleWelcomer:
 
   # Whether the Title welcome feature should be enabled
-  enabled: true
+  Enabled: true
 
   # The title of the title message
   Title: "&aWelcome to &2&n{ServerName}"
@@ -65,28 +65,28 @@ TitleWelcomer:
 ActionBarWelcome:
 
   # Whether the ActionBar welcome feature should be enabled
-  enabled: true
+  Enabled: true
 
   # The message that should be sent to the player through the action bar.
-  message: "&aWelcome to &2{ServerName} &a{PlayerDisplayName}"
+  Message: "&aWelcome to &2{ServerName} &a{PlayerDisplayName}"
 
   # The sound that should be played when the action bar message is sent
-  sound:
+  Sound:
 
     # Whether the sound should be enabled
-    enabled: true
+    Enabled: true
 
     # The sound that should be played | https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
-    sound: ENTITY_EXPERIENCE_ORB_PICKUP
+    Sound: ENTITY_EXPERIENCE_ORB_PICKUP
 
     # The volume of the sound
-    volume: 1.0
+    Volume: 1.0
 
     # The pitch of the sound
-    pitch: 1.0
+    Pitch: 1.0
 
 # The GUI that the player will see when they run /welcomer menu
 GUI:
 
   # Whether the GUI feature should be enabled
-  enabled: true
+  Enabled: true
