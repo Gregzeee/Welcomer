@@ -5,11 +5,16 @@
 #   \__/\  /  \___  >____/\___  >____/|__|_|  /\___  >__|
 #        \/       \/          \/            \/     \/
 
+# The prefix that should be used in the plugin
+Prefix: "&7[&eWelcomer&7]"
+
 # Permission node that the player must have to reload the configuration (/welcomer reload)
 PermissionReload: "welcomer.reload"
 
 # Permission node that the player must have to configure the plugin from in-game through the gui (/welcomer menu)
-permissionMenu: "welcomer.menu"
+PermissionMenu: "welcomer.menu"
+
+NoPermissionMessage: "&cYou do not have permission to use this command."
 
 # Message of the day
 MOTD:
@@ -27,7 +32,7 @@ MOTD:
     - "&7-=-=-=-=-=-=-=-=-=-"
 
 # Join/Quit messages
-JoinWelcomer:
+JoinWelcome:
 
   # Whether the join/quit messages feature should be enabled
   Enabled: true
@@ -38,11 +43,16 @@ JoinWelcomer:
   # The message that should be sent when a player joins the server
   Join-Message: "&aWelcome back to &2{ServerIP}:{ServerPort} &2{PlayerName}"
 
-  # The message that should be sent when a player leaves the server
-  Quit-Message: "&c{PlayerName} has left the server. :("
+QuitWelcome:
+
+  # Whether the quit messages feature should be enabled
+  Enabled: true
+
+  # The message that should be sent when a player quits the server
+  Quit-Message: "&aGoodbye &2{PlayerName} &a, see you next time!"
 
 # This welcomes players with a title message.
-TitleWelcomer:
+TitleWelcome:
 
   # Whether the Title welcome feature should be enabled
   Enabled: true
@@ -65,7 +75,7 @@ TitleWelcomer:
 ActionBarWelcome:
 
   # Whether the ActionBar welcome feature should be enabled
-  Enabled: true
+  Enabled: false
 
   # The message that should be sent to the player through the action bar.
   Message: "&aWelcome to &2{ServerName} &a{PlayerDisplayName}"
