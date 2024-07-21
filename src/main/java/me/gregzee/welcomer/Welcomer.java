@@ -34,7 +34,7 @@ public final class Welcomer extends JavaPlugin {
         ConsoleCommandSender console = getServer().getConsoleSender();
         console.sendMessage(utility.colorize("&7-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="));
         console.sendMessage(utility.colorize("                 &eWelcomer"));
-        console.sendMessage(utility.colorize("          Plugin has been enabled"));
+        console.sendMessage(utility.colorize("            &7Welcomer has &aenabled"));
         console.sendMessage(utility.colorize("&7-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="));
         console.sendMessage(utility.colorize("               &cMade by Gregzee"));
     }
@@ -43,7 +43,7 @@ public final class Welcomer extends JavaPlugin {
         ConsoleCommandSender console = getServer().getConsoleSender();
         console.sendMessage(utility.colorize("&7-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="));
         console.sendMessage(utility.colorize("                 &eWelcomer"));
-        console.sendMessage(utility.colorize("          Plugin has been disabled"));
+        console.sendMessage(utility.colorize("            &7Welcomer has &cdisabled"));
         console.sendMessage(utility.colorize("&7-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="));
         console.sendMessage(utility.colorize("               &cMade by Gregzee"));
     }
