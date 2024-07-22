@@ -2,6 +2,8 @@ package me.gregzee.welcomer.manager;
 
 import me.gregzee.welcomer.Welcomer;
 
+import java.util.List;
+
 public final class ConfigManager {
 
 	private final Welcomer instance = Welcomer.getInstance();
@@ -16,77 +18,126 @@ public final class ConfigManager {
 
 	private static final class MOTD {
 
-		private boolean enabled;
+		private static boolean enabled;
 
-		private String[] messages;
+		private static List<String> messages;
 	}
 
 	private static final class JoinWelcome {
 
-		private boolean enabled;
+		private static boolean enabled;
 
-		private String firstJoinMessage;
+		private static String firstJoinMessage;
 
-		private String joinMessage;
+		private static String joinMessage;
 	}
 
 	private static final class QuitWelcome {
 
-		private boolean enabled;
+		private static boolean enabled;
 
-		private String quitMessage;
+		private static String quitMessage;
 	}
 
 	private static final class TitleWelcome {
 
-		private boolean enabled;
+		private static boolean enabled;
 
-		private String title;
+		private static String title;
 
-		private String subtitle;
+		private static String subtitle;
 
-		private int fadeIn;
+		private static int fadeIn;
 
-		private int stay;
+		private static int stay;
 
-		private int fadeOut;
+		private static int fadeOut;
 	}
 
 	private static final class ActionBarWelcome {
 
-		private boolean enabled;
+		private static boolean enabled;
 
-		private String message;
+		private static String message;
 
-		private final class Sound {
+		private static final class Sound {
 
-			private boolean enabled;
+			private static boolean enabled;
 
-			private org.bukkit.Sound sound;
+			private static org.bukkit.Sound sound;
 
-			private float volume;
+			private static float volume;
 
-			private float pitch;
+			private static float pitch;
 		}
 	}
 
 	private static final class GUI {
 
-		private boolean enabled;
+		private static boolean enabled;
 	}
 
+	/**
+	 * Load the configuration file
+	 */
 	public void load() {
-		prefix = getString("prefix");
-		reloadPermission = getString("reload-permission");
-		menuPermission = getString("menu-permission");
-		noPermissionMessage = getString("no-permission-message");
-	}
 
+		// General
+		prefix = getString("Prefix");
+		reloadPermission = getString("ReloadPermission");
+		menuPermission = getString("MenuPermission");
+		noPermissionMessage = getString("NoPermissionMessage");
+
+		// MOTD
+		MOTD.enabled = getBoolean("MOTD.Enabled");
+		MOTD.messages = getStringList("MOTD.Messages");
+
+		// JoinWelcome
+		JoinWelcome.enabled = getBoolean("JoinWelcome.Enabled");
+		JoinWelcome.firstJoinMessage = getString("JoinWelcome.First-Join-Message");
+		JoinWelcome.joinMessage = getString("JoinWelcome.Join-Message");
+
+		// QuitWelcome
+		QuitWelcome.enabled = getBoolean("QuitWelcome.Enabled");
+		QuitWelcome.quitMessage = getString("QuitWelcome.Quit-Message");
+
+		// TitleWelcome
+		TitleWelcome.enabled = getBoolean("TitleWelcome.Enabled");
+		TitleWelcome.title = getString("TitleWelcome.Title");
+		TitleWelcome.subtitle = getString("TitleWelcome.Subtitle");
+		TitleWelcome.fadeIn = getInt("TitleWelcome.FadeIn");
+		TitleWelcome.stay = getInt("TitleWelcome.Stay");
+		TitleWelcome.fadeOut = getInt("TitleWelcome.FadeOut");
+
+		// ActionBarWelcome
+		ActionBarWelcome.enabled = getBoolean("ActionBarWelcome.Enabled");
+		ActionBarWelcome.message = getString("ActionBarWelcome.Message");
+		ActionBarWelcome.Sound.enabled = getBoolean("ActionBarWelcome.Sound.Enabled");
+		ActionBarWelcome.Sound.sound = org.bukkit.Sound.valueOf(getString("ActionBarWelcome.Sound.Sound"));
+		ActionBarWelcome.Sound.volume = (float) getDouble("ActionBarWelcome.Sound.Volume");
+		ActionBarWelcome.Sound.pitch = (float) getDouble("ActionBarWelcome.Sound.Pitch");
+
+		// GUI
+		GUI.enabled = getBoolean("GUI.Enabled");
+	}
+	
 	private String getString(String path) {
 		return instance.getConfig().getString(path);
 	}
 
 	private boolean getBoolean(String path) {
 		return instance.getConfig().getBoolean(path);
+	}
+
+	private List<String> getStringList(String path) {
+		return instance.getConfig().getStringList(path);
+	}
+
+	private int getInt(String path) {
+		return instance.getConfig().getInt(path);
+	}
+
+	private double getDouble(String path) {
+		return instance.getConfig().getDouble(path);
 	}
 }
