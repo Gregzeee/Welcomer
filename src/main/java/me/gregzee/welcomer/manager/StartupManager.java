@@ -15,21 +15,33 @@ public final class StartupManager {
         load();
     }
 
+    /**
+     * Load all necessary components
+     */
     private void load() {
         registerCommands();
         registerEvents();
         enableBStats();
     }
 
+    /**
+     * Register all commands
+     */
     private void registerCommands() {
         instance.getCommand("welcomer").setExecutor(new PrimaryCommand());
     }
 
+    /**
+     * Register all events
+     */
     private void registerEvents() {
         instance.getServer().getPluginManager().registerEvents(new JoinListener(), instance);
         instance.getServer().getPluginManager().registerEvents(new QuitListener(), instance);
     }
 
+    /**
+     * Enable bStats
+     */
     private void enableBStats() {
         try {
             new Metrics(instance, 21222);
