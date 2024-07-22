@@ -30,6 +30,9 @@ public final class Welcomer extends JavaPlugin {
         sendDisableMessage();
     }
 
+    /**
+     * Send a message to the console when the plugin is enabled
+     */
     private void sendEnableMessage() {
         ConsoleCommandSender console = getServer().getConsoleSender();
         console.sendMessage(utility.colorize("&7-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="));
@@ -39,6 +42,9 @@ public final class Welcomer extends JavaPlugin {
         console.sendMessage(utility.colorize("               &cMade by Gregzee"));
     }
 
+    /**
+     * Send a message to the console when the plugin is disabled
+     */
     private void sendDisableMessage() {
         ConsoleCommandSender console = getServer().getConsoleSender();
         console.sendMessage(utility.colorize("&7-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="));
