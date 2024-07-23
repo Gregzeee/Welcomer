@@ -1,5 +1,6 @@
 package me.gregzee.welcomer.manager;
 
+import lombok.Getter;
 import me.gregzee.welcomer.Welcomer;
 
 import java.util.List;
@@ -8,72 +9,103 @@ public final class ConfigManager {
 
 	private final Welcomer instance = Welcomer.getInstance();
 
-	private String prefix;
+	@Getter
+	private static String prefix;
 
-	private String reloadPermission;
+	@Getter
+	private static String reloadPermission;
 
-	private String menuPermission;
+	@Getter
+	private static String menuPermission;
 
-	private String noPermissionMessage;
+	@Getter
+	private static String noPermissionMessage;
 
-	private static final class MOTD {
+	@Getter
+	public static final class MOTD {
 
+		@Getter
 		private static boolean enabled;
 
+		@Getter
 		private static List<String> messages;
 	}
 
-	private static final class JoinWelcome {
+	@Getter
+	public static final class JoinWelcome {
 
+		@Getter
 		private static boolean enabled;
 
+		@Getter
 		private static String firstJoinMessage;
 
+		@Getter
 		private static String joinMessage;
 	}
 
-	private static final class QuitWelcome {
+	@Getter
+	public static final class QuitWelcome {
 
+		@Getter
 		private static boolean enabled;
 
+		@Getter
 		private static String quitMessage;
 	}
 
-	private static final class TitleWelcome {
+	@Getter
+	public static final class TitleWelcome {
 
+		@Getter
 		private static boolean enabled;
 
+		@Getter
 		private static String title;
 
+		@Getter
 		private static String subtitle;
 
+		@Getter
 		private static int fadeIn;
 
+		@Getter
 		private static int stay;
 
+		@Getter
 		private static int fadeOut;
 	}
 
-	private static final class ActionBarWelcome {
+	@Getter
+	public static final class ActionBarWelcome {
 
+		@Getter
 		private static boolean enabled;
 
+		@Getter
 		private static String message;
 
+		@Getter
 		private static final class Sound {
 
+			@Getter
 			private static boolean enabled;
 
+			@Getter
 			private static org.bukkit.Sound sound;
 
+			@Getter
 			private static float volume;
 
+			@Getter
 			private static float pitch;
 		}
 	}
 
-	private static final class GUI {
+	@Getter
+	public static final class GUI {
 
+		@Getter
 		private static boolean enabled;
 	}
 
