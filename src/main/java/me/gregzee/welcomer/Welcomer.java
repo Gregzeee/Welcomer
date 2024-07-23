@@ -24,6 +24,10 @@ public final class Welcomer extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
+        saveDefaultConfig();
+        getConfig().options().copyDefaults();
+        saveConfig();
+
         new StartupManager();
 
         if (getServer().getPluginManager().getPlugin("PlaceholderAPI") != null) {
@@ -36,6 +40,7 @@ public final class Welcomer extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        saveConfig();
         sendDisableMessage();
     }
 
