@@ -5,6 +5,7 @@ import me.gregzee.welcomer.manager.StartupManager;
 import me.gregzee.welcomer.utility.Utility;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
+import java.util.logging.Level;
 
 @Getter
 public final class Welcomer extends JavaPlugin {
@@ -20,6 +21,10 @@ public final class Welcomer extends JavaPlugin {
         instance = this;
 
         new StartupManager();
+
+        if (getServer().getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            getLogger().log(Level.INFO, "PlaceholderAPI found, enabling placeholders.");
+        }
 
         sendEnableMessage();
 
