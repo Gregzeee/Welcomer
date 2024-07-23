@@ -1,6 +1,7 @@
 package me.gregzee.welcomer;
 
 import lombok.Getter;
+import me.gregzee.welcomer.manager.ConfigManager;
 import me.gregzee.welcomer.manager.StartupManager;
 import me.gregzee.welcomer.utility.Utility;
 import org.bukkit.command.ConsoleCommandSender;
@@ -12,6 +13,9 @@ public final class Welcomer extends JavaPlugin {
 
     @Getter
     private static final Utility utility = new Utility();
+
+    @Getter
+    private static final ConfigManager configManager = new ConfigManager();
 
     @Getter
 	private static Welcomer instance;
