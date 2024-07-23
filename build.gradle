@@ -16,11 +16,13 @@ repositories {
     mavenCentral()
     maven { url 'https://repo.papermc.io/repository/maven-public/' }
     maven { url 'https://repo.codemc.io/repository/maven-releases/' }
+    maven { url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/' }
 }
 
 dependencies {
     compileOnly 'com.destroystokyo.paper:paper-api:1.16.1-R0.1-SNAPSHOT'
     compileOnly 'org.projectlombok:lombok:1.18.30'
+    compileOnly 'me.clip:placeholderapi:2.11.6'
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
     implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'org.bstats:bstats-bukkit:3.0.0'
