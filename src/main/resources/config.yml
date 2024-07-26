@@ -25,10 +25,9 @@ MOTD:
   # The message that should be sent to the player when they join the server
   Message:
     - "&7-=-=-=-=-=-=-=-=-=-"
-    - "&aWelcome to &2{ServerName}"
-    - "&aOnline players: &2{OnlinePlayers}/{MaxPlayers}"
-    - "&aDiscord: &2{Discord}"
-    - "&aStore: &2{Store}"
+    - "&aWelcome to &2MyServer"
+    - "&aOnline players: &2%online%/20"
+    - "&aStore: &2mystore.net"
     - "&7-=-=-=-=-=-=-=-=-=-"
 
 # Join/Quit messages
@@ -38,10 +37,10 @@ JoinWelcome:
   Enabled: true
 
   # The message that should be sent when a player joins the server for the first time
-  First-Join-Message: "&aWelcome &2{Player} &afor joining &2{ServerName} &afor the first time ever."
+  First-Join-Message: "&aWelcome &2%plater% &afor joining &2MyServer &afor the first time ever."
 
   # The message that should be sent when a player joins the server
-  Join-Message: "&aWelcome back to &2{ServerIP}:{ServerPort} &2{PlayerName}"
+  Join-Message: "&aWelcome back to &2myserver.net &2%player%!"
 
 QuitWelcome:
 
@@ -49,7 +48,7 @@ QuitWelcome:
   Enabled: true
 
   # The message that should be sent when a player quits the server
-  Quit-Message: "&aGoodbye &2{PlayerName} &a, see you next time!"
+  Quit-Message: "&aGoodbye &2%player% &a, see you next time!"
 
 # This welcomes players with a title message.
 TitleWelcome:
@@ -58,10 +57,10 @@ TitleWelcome:
   Enabled: true
 
   # The title of the title message
-  Title: "&aWelcome to &2&n{ServerName}"
+  Title: "&aWelcome to &2&nMyserver"
 
   # The subtitle of the title message
-  SubTitle: "&a{PlayerDisplayName}"
+  SubTitle: "&a%player%"
 
   # The time that the title should fade in for in ticks. Default: 20
   FadeIn: 20
@@ -78,7 +77,7 @@ ActionBarWelcome:
   Enabled: false
 
   # The message that should be sent to the player through the action bar.
-  Message: "&aWelcome to &2{ServerName} &a{PlayerDisplayName}"
+  Message: "&aWelcome to &2MyServer &a%player%"
 
   # The sound that should be played when the action bar message is sent
   Sound:
