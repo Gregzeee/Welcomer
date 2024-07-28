@@ -80,6 +80,7 @@ ActionBarWelcome:
   Message: "&aWelcome to &2MyServer &a%player%"
 
   # The sound that should be played when the action bar message is sent
+  # TODO - Move sound into its independent section
   Sound:
 
     # Whether the sound should be enabled
