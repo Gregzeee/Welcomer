@@ -1,6 +1,7 @@
 package me.gregzee.welcomer.utility;
 
 import me.clip.placeholderapi.PlaceholderAPI;
+import me.gregzee.welcomer.manager.ConfigManager;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -15,7 +16,7 @@ public final class Utility {
 	 * @param message The message to colorize
 	 * @return the colorized message
 	 */
-	public String colorize(String message) {
+	public String colorize(final String message) {
 		return ChatColor.translateAlternateColorCodes('&', message);
 	}
 
@@ -26,7 +27,7 @@ public final class Utility {
 	 * @param volume The volume of the sound
 	 * @param pitch The pitch of the sound
 	 */
-	public void playSound(Player player, Sound sound, float volume, float pitch) {
+	public void playSound(final Player player, final Sound sound, final float volume, final float pitch) {
 		player.playSound(player.getLocation(), sound, volume, pitch);
 	}
 
@@ -36,7 +37,23 @@ public final class Utility {
 	 * @param message The message to replace placeholders in
 	 * @return the message with placeholders replaced
 	 */
-	public String parsePlaceholders(Player player, String message) {
+	public String parsePlaceholders(final Player player, final String message) {
 		return PlaceholderAPI.setPlaceholders(player, message);
+	}
+
+	public void loopMOTD(final Player player) {
+		for (String message : ConfigManager.MOTD.getMessages()) {
+			player.sendMessage(colorize(parsePlaceholders(player, message)));
+		}
+	}
+
+	public void sendTitle(Player player, String title, String subtitle) {
+		player.sendTitle(
+				title,
+				subtitle,
+				ConfigManager.TitleWelcome.getFadeIn(),
+				ConfigManager.TitleWelcome.getStay(),
+				ConfigManager.TitleWelcome.getFadeOut()
+		);
 	}
 }
