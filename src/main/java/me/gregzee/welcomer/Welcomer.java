@@ -8,6 +8,9 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.util.logging.Level;
 
+/**
+ * Main class for the plugin
+ */
 @Getter
 public final class Welcomer extends JavaPlugin {
 

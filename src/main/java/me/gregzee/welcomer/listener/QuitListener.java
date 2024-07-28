@@ -7,6 +7,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+/**
+ * Listener for player quit events
+ */
 public final class QuitListener implements Listener {
 
     private final Welcomer instance = Welcomer.getInstance();

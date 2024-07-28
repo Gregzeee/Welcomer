@@ -7,6 +7,9 @@ import me.gregzee.welcomer.listener.QuitListener;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 
+/**
+ * Used to load all necessary components
+ */
 public final class StartupManager {
 
     private final Welcomer instance = Welcomer.getInstance();

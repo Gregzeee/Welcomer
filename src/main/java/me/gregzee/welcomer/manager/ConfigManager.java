@@ -5,6 +5,9 @@ import me.gregzee.welcomer.Welcomer;
 
 import java.util.List;
 
+/**
+ * Used to manage all the configuration options
+ */
 public final class ConfigManager {
 
 	private final Welcomer instance = Welcomer.getInstance();

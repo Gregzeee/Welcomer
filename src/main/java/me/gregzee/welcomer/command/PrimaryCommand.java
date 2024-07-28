@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
+/**
+ * Primary command executor including all commands like /welcomer menu, /welcomer reload
+ */
 public final class PrimaryCommand implements CommandExecutor, TabCompleter {
 
     @Override

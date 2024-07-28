@@ -5,6 +5,9 @@ import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
+/**
+ * Utility class for common methods
+ */
 public final class Utility {
 
 	/**
