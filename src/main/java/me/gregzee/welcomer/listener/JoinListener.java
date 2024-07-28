@@ -12,6 +12,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.awt.*;
 
+
+// TODO - Add more comments
 /**
  * Listener for player join events
  */
