@@ -1,6 +1,5 @@
 package me.gregzee.welcomer.listener;
 
-import me.clip.placeholderapi.libs.kyori.adventure.platform.facet.Facet;
 import me.gregzee.welcomer.Welcomer;
 import me.gregzee.welcomer.manager.ConfigManager;
 import me.gregzee.welcomer.utility.Utility;
@@ -9,9 +8,6 @@ import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-
-import java.awt.*;
-
 
 // TODO - Add more comments
 /**
