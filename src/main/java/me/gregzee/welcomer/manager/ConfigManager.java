@@ -88,6 +88,8 @@ public final class ConfigManager {
 		@Getter
 		private static String message;
 
+
+		// TODO - Make an independent place for Sound
 		@Getter
 		private static final class Sound {
 
