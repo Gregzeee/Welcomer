@@ -20,9 +20,9 @@ public final class QuitListener implements Listener {
 
     public void onPlayerQuit(PlayerQuitEvent event) {
 
-        Player player = event.getPlayer();
+        final Player player = event.getPlayer();
 
-        String quitMessage = utility.parsePlaceholders(player, ConfigManager.QuitWelcome.getQuitMessage());
+        final String quitMessage = utility.parsePlaceholders(player, ConfigManager.QuitWelcome.getQuitMessage());
 
         if (!ConfigManager.QuitWelcome.isEnabled()) {
             event.setQuitMessage(null);
