@@ -8,12 +8,6 @@
 # The prefix that should be used in the plugin
 Prefix: "&7[&eWelcomer&7]"
 
-# Permission node that the player must have to reload the configuration (/welcomer reload)
-PermissionReload: "welcomer.reload"
-
-# Permission node that the player must have to configure the plugin from in-game through the gui (/welcomer menu)
-PermissionMenu: "welcomer.menu"
-
 NoPermissionMessage: "&cYou do not have permission to use this command."
 
 # Message of the day
