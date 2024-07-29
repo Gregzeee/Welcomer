@@ -27,10 +27,10 @@ public final class PrimaryCommand implements CommandExecutor, TabCompleter {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if ("menu".equalsIgnoreCase(args[0])) {
-            PrimaryCommandHandler.handleMenuCommand();
+            PrimaryCommandHandler.handleMenuCommand(sender);
             return true;
         } else if ("reload".equalsIgnoreCase(args[0])) {
-            PrimaryCommandHandler.handleReloadCommand();
+            PrimaryCommandHandler.handleReloadCommand(sender);
             return true;
         } else {
             sender.sendMessage(utility.colorize(ConfigManager.getPrefix() + " &cInvalid usage! &f/welcomer <menu/reload>"));
