@@ -118,8 +118,6 @@ public final class ConfigManager {
 
 		// General
 		prefix = getString("Prefix");
-		reloadPermission = getString("ReloadPermission");
-		menuPermission = getString("MenuPermission");
 		noPermissionMessage = getString("NoPermissionMessage");
 
 		// MOTD
