@@ -22,9 +22,9 @@ public final class QuitListener implements Listener {
 
         final Player player = event.getPlayer();
 
-        final String quitMessage = utility.parsePlaceholders(player, ConfigManager.QuitWelcome.getQuitMessage());
+        final String quitMessage = utility.parsePlaceholders(player, ConfigManager.Quit.getQuitMessage());
 
-        if (!ConfigManager.QuitWelcome.isEnabled()) {
+        if (!ConfigManager.Quit.isEnabled()) {
             event.setQuitMessage(null);
         } else {
             event.setQuitMessage(utility.colorize(quitMessage));
