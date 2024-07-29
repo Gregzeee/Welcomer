@@ -41,19 +41,29 @@ public final class Utility {
 		return PlaceholderAPI.setPlaceholders(player, message);
 	}
 
+	/**
+	 * Loops through the MOTD messages and sends them to a player
+	 * @param player The player to send the MOTD to
+	 */
 	public void loopMOTD(final Player player) {
 		for (String message : ConfigManager.MOTD.getMessages()) {
 			player.sendMessage(colorize(parsePlaceholders(player, message)));
 		}
 	}
 
+	/**
+	 * Sends a title to a player. FadeIn, Stay and FadeOut are automatically pulled from the config | Just a shorter version of {@link org.bukkit.entity.Player#sendTitle(String, String, int, int, int)}
+	 * @param player The player to send the title to
+	 * @param title The title to send
+	 * @param subtitle The subtitle to send
+	 */
 	public void sendTitle(Player player, String title, String subtitle) {
 		player.sendTitle(
 				title,
 				subtitle,
-				ConfigManager.TitleWelcome.getFadeIn(),
-				ConfigManager.TitleWelcome.getStay(),
-				ConfigManager.TitleWelcome.getFadeOut()
+				ConfigManager.Title.getFadeIn(),
+				ConfigManager.Title.getStay(),
+				ConfigManager.Title.getFadeOut()
 		);
 	}
 }
