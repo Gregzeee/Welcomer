@@ -11,8 +11,13 @@ softdepend:
 
 commands:
   welcomer:
-    description: Welcomer command
-    usage: /welcomer <arg>
-    aliases: [welcomer]
-    permission: welcomer.commands.primary
-    permission-message: You do not have permission to use this command
+    description: The main command for the plugin
+    usage: /welcomer <reload|menu>
+
+permissions:
+  welcomer.commands.reload:
+    description: Allows the player to reload the config
+    default: op
+  welcomer.commands.menu:
+    description: Allows the player to open the GUI
+    default: op
