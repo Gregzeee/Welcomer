@@ -31,7 +31,7 @@ MOTD:
     - "&7-=-=-=-=-=-=-=-=-=-"
 
 # Join/Quit messages
-JoinWelcome:
+Join:
 
   # Whether the join/quit messages feature should be enabled
   Enabled: true
@@ -42,7 +42,7 @@ JoinWelcome:
   # The message that should be sent when a player joins the server
   Join-Message: "&aWelcome back to &2myserver.net &2%player%!"
 
-QuitWelcome:
+Quit:
 
   # Whether the quit messages feature should be enabled
   Enabled: true
@@ -51,7 +51,7 @@ QuitWelcome:
   Quit-Message: "&aGoodbye &2%player% &a, see you next time!"
 
 # This welcomes players with a title message.
-TitleWelcome:
+Title:
 
   # Whether the Title welcome feature should be enabled
   Enabled: true
@@ -71,7 +71,7 @@ TitleWelcome:
   # The time that the title should fade out for in ticks. Default: 20
   FadeOut: 20
 
-ActionBarWelcome:
+ActionBar:
 
   # Whether the ActionBar welcome feature should be enabled
   Enabled: false
@@ -79,21 +79,20 @@ ActionBarWelcome:
   # The message that should be sent to the player through the action bar.
   Message: "&aWelcome to &2MyServer &a%player%"
 
-  # The sound that should be played when the action bar message is sent
-  # TODO - Move sound into its independent section
-  Sound:
+# The sound that should be played when a player joins the server
+Sound:
 
-    # Whether the sound should be enabled
-    Enabled: true
+  # Whether the sound feature should be enabled
+  Enabled: true
 
-    # The sound that should be played | https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
-    Sound: ENTITY_EXPERIENCE_ORB_PICKUP
+  # The sound that should be played | https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
+  Sound: ENTITY_EXPERIENCE_ORB_PICKUP
 
-    # The volume of the sound
-    Volume: 1.0
+  # The volume of the sound
+  Volume: 1.0
 
-    # The pitch of the sound
-    Pitch: 1.0
+  # The pitch of the sound
+  Pitch: 1.0
 
 # The GUI that the player will see when they run /welcomer menu
 GUI:
