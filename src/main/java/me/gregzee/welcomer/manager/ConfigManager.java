@@ -2,7 +2,6 @@ package me.gregzee.welcomer.manager;
 
 import lombok.Getter;
 import me.gregzee.welcomer.Welcomer;
-
 import java.util.List;
 
 /**
@@ -35,7 +34,7 @@ public final class ConfigManager {
 	}
 
 	@Getter
-	public static final class JoinWelcome {
+	public static final class Join {
 
 		@Getter
 		private static boolean enabled;
@@ -48,7 +47,7 @@ public final class ConfigManager {
 	}
 
 	@Getter
-	public static final class QuitWelcome {
+	public static final class Quit {
 
 		@Getter
 		private static boolean enabled;
@@ -58,7 +57,7 @@ public final class ConfigManager {
 	}
 
 	@Getter
-	public static final class TitleWelcome {
+	public static final class Title {
 
 		@Getter
 		private static boolean enabled;
@@ -80,31 +79,29 @@ public final class ConfigManager {
 	}
 
 	@Getter
-	public static final class ActionBarWelcome {
+	public static final class ActionBar {
 
 		@Getter
 		private static boolean enabled;
 
 		@Getter
 		private static String message;
+	}
 
+	@Getter
+	public static final class Sound {
 
-		// TODO - Make an independent place for Sound
 		@Getter
-		private static final class Sound {
+		private static boolean enabled;
 
-			@Getter
-			private static boolean enabled;
+		@Getter
+		private static String sound;
 
-			@Getter
-			private static org.bukkit.Sound sound;
+		@Getter
+		private static float volume;
 
-			@Getter
-			private static float volume;
-
-			@Getter
-			private static float pitch;
-		}
+		@Getter
+		private static float pitch;
 	}
 
 	@Getter
@@ -129,30 +126,32 @@ public final class ConfigManager {
 		MOTD.enabled = getBoolean("MOTD.Enabled");
 		MOTD.messages = getStringList("MOTD.Messages");
 
-		// JoinWelcome
-		JoinWelcome.enabled = getBoolean("JoinWelcome.Enabled");
-		JoinWelcome.firstJoinMessage = getString("JoinWelcome.First-Join-Message");
-		JoinWelcome.joinMessage = getString("JoinWelcome.Join-Message");
+		// Join
+		Join.enabled = getBoolean("Join.Enabled");
+		Join.firstJoinMessage = getString("Join.First-Join-Message");
+		Join.joinMessage = getString("Join.Join-Message");
 
-		// QuitWelcome
-		QuitWelcome.enabled = getBoolean("QuitWelcome.Enabled");
-		QuitWelcome.quitMessage = getString("QuitWelcome.Quit-Message");
+		// Quit
+		Quit.enabled = getBoolean("Quit.Enabled");
+		Quit.quitMessage = getString("Quit.Quit-Message");
 
-		// TitleWelcome
-		TitleWelcome.enabled = getBoolean("TitleWelcome.Enabled");
-		TitleWelcome.title = getString("TitleWelcome.Title");
-		TitleWelcome.subtitle = getString("TitleWelcome.Subtitle");
-		TitleWelcome.fadeIn = getInt("TitleWelcome.FadeIn");
-		TitleWelcome.stay = getInt("TitleWelcome.Stay");
-		TitleWelcome.fadeOut = getInt("TitleWelcome.FadeOut");
+		// Title
+		Title.enabled = getBoolean("Title.Enabled");
+		Title.title = getString("Title.Title");
+		Title.subtitle = getString("Title.Subtitle");
+		Title.fadeIn = getInt("Title.FadeIn");
+		Title.stay = getInt("Title.Stay");
+		Title.fadeOut = getInt("Title.FadeOut");
 
-		// ActionBarWelcome
-		ActionBarWelcome.enabled = getBoolean("ActionBarWelcome.Enabled");
-		ActionBarWelcome.message = getString("ActionBarWelcome.Message");
-		ActionBarWelcome.Sound.enabled = getBoolean("ActionBarWelcome.Sound.Enabled");
-		ActionBarWelcome.Sound.sound = org.bukkit.Sound.valueOf(getString("ActionBarWelcome.Sound.Sound"));
-		ActionBarWelcome.Sound.volume = (float) getDouble("ActionBarWelcome.Sound.Volume");
-		ActionBarWelcome.Sound.pitch = (float) getDouble("ActionBarWelcome.Sound.Pitch");
+		// ActionBar
+		ActionBar.enabled = getBoolean("ActionBar.Enabled");
+		ActionBar.message = getString("ActionBar.Message");
+
+		// Sound
+		Sound.enabled = getBoolean("Sound.Enabled");
+		Sound.sound = getString("Sound.Sound");
+		Sound.volume = (float) getDouble("Sound.Volume");
+		Sound.pitch = (float) getDouble("Sound.Pitch");
 
 		// GUI
 		GUI.enabled = getBoolean("GUI.Enabled");
