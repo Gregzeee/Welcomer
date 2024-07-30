@@ -80,7 +80,7 @@ Sound:
   Enabled: true
 
   # The sound that should be played | https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
-  Sound: ENTITY_EXPERIENCE_ORB_PICKUP
+  Sound: ENTITY_PLAYER_LEVELUP
 
   # The volume of the sound
   Volume: 1.0
