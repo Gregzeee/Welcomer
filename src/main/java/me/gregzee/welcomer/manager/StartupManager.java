@@ -14,6 +14,8 @@ public final class StartupManager {
 
     private final Welcomer instance = Welcomer.getInstance();
 
+    private final ConfigManager configManager = Welcomer.getConfigManager();
+
     public StartupManager() {
         load();
     }
@@ -22,6 +24,26 @@ public final class StartupManager {
      * Load all necessary components
      */
     private void load() {
+        if (instance == null) {
+            Bukkit.getLogger().severe("Welcomer instance is null.");
+            return;
+        }
+
+        instance.saveDefaultConfig();
+        Bukkit.getLogger().info("Default config saved.");
+
+        Bukkit.getLogger().info("Copied default config options.");
+        instance.getConfig().options().copyDefaults(true);
+
+        Bukkit.getLogger().info("Config saved.");
+        instance.saveConfig();
+
+        Bukkit.getLogger().info("Configuration file saved and defaults copied.");
+
+        // Load the configuration settings
+        configManager.load();
+        Bukkit.getLogger().info("Configuration loaded.");
+
         registerCommands();
         registerEvents();
         enableBStats();
