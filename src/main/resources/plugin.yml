@@ -1,8 +1,8 @@
 name: Welcomer
 author: Gregzee
-description: your description here
+description: Welcomer aims to add different ways of welcoming your players on your server from quit and join messages to MOTDs, titles, sounds, actionbars and much more with extensive configuration and much more.
 main: me.gregzee.welcomer.Welcomer
-version: '1.0.0'
+version: '2.0.0'
 api-version: '1.13'
 load: POSTWORLD
 
