@@ -1,13 +1,14 @@
 package me.gregzee.welcomer.listener;
 
-import me.clip.placeholderapi.libs.kyori.adventure.Adventure;
 import me.gregzee.welcomer.Welcomer;
 import me.gregzee.welcomer.manager.ConfigManager;
 import me.gregzee.welcomer.utility.Utility;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
@@ -18,6 +19,7 @@ public final class JoinListener implements Listener {
 
     private final Utility utility = Welcomer.getUtility();
 
+    @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         final Player player = event.getPlayer();
 
@@ -31,23 +33,23 @@ public final class JoinListener implements Listener {
             final String joinMessage = ConfigManager.Join.getJoinMessage();
 
             if (player.hasPlayedBefore()) {
-                event.setJoinMessage(utility.colorize(utility.parsePlaceholders(player, joinMessage)));
+                Bukkit.broadcastMessage(utility.colorize(utility.setPlaceholders(player, joinMessage)));
             } else {
-                event.setJoinMessage(utility.colorize(utility.parsePlaceholders(player, ConfigManager.Join.getFirstJoinMessage())));
+                Bukkit.broadcastMessage(utility.colorize(utility.setPlaceholders(player, ConfigManager.Join.getFirstJoinMessage())));
             }
         }
 
         /* Title */
         if (ConfigManager.Title.isEnabled()) {
-            final String title = utility.colorize(utility.parsePlaceholders(player, ConfigManager.Title.getTitle()));
-            final String subtitle = utility.colorize(utility.parsePlaceholders(player, ConfigManager.Title.getSubtitle()));
+            final String title = utility.colorize(utility.setPlaceholders(player, ConfigManager.Title.getTitle()));
+            final String subtitle = utility.colorize(utility.setPlaceholders(player, ConfigManager.Title.getSubtitle()));
 
             utility.sendTitle(player, title, subtitle);
         }
 
         /* ActionBar */
         if (ConfigManager.ActionBar.isEnabled()) {
-            final String actionBarMessage = utility.colorize(utility.parsePlaceholders(player, ConfigManager.ActionBar.getMessage()));
+            final String actionBarMessage = utility.colorize(utility.setPlaceholders(player, ConfigManager.ActionBar.getMessage()));
 
             // TODO - Move to adventure
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(actionBarMessage));
