@@ -33,8 +33,9 @@ public final class Welcomer extends JavaPlugin {
 
         new StartupManager();
 
-        if (getServer().getPluginManager().getPlugin("PlaceholderAPI") != null) {
-            getLogger().log(Level.INFO, "PlaceholderAPI found, enabling placeholders.");
+        if (getServer().getPluginManager().getPlugin("PlaceholderAPI") == null) {
+            getLogger().severe("PlaceholderAPI not found, disabling");
+            getServer().getPluginManager().disablePlugin(this);
         }
 
         sendEnableMessage();
