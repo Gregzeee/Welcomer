@@ -3,8 +3,13 @@ package me.gregzee.welcomer.utility;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.gregzee.welcomer.manager.ConfigManager;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+
+import java.util.logging.Level;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Utility class for common methods
@@ -16,8 +21,42 @@ public final class Utility {
 	 * @param message The message to colorize
 	 * @return the colorized message
 	 */
+//	public String colorize(final String message) {
+//		if (message == null) {
+//			return null;
+//		}
+//
+//		return ChatColor.translateAlternateColorCodes('&', message);
+//	}
+
+	// The pattern for hex colors
+	private static final Pattern HEX_PATTERN = Pattern.compile("&#([A-Fa-f0-9]{6})");
+
+	/**
+	 * Colorizes a string with support for hex colors
+	 * @param message The message to colorize
+	 * @return the colorized message
+	 */
 	public String colorize(final String message) {
-		return ChatColor.translateAlternateColorCodes('&', message);
+		if (message == null) {
+			return null;
+		}
+
+		// Create a matcher for the hex pattern
+		Matcher matcher = HEX_PATTERN.matcher(message);
+		StringBuffer buffer = new StringBuffer();
+
+		// Loop through the matches and replace them with the color
+		while (matcher.find()) {
+			String hexCode = matcher.group(1);
+			matcher.appendReplacement(buffer, ChatColor.of("#" + hexCode).toString());
+		}
+
+		// Append the rest of the message
+		matcher.appendTail(buffer);
+
+		// Return the colorized message
+		return ChatColor.translateAlternateColorCodes('&', buffer.toString());
 	}
 
 	/**
@@ -37,8 +76,24 @@ public final class Utility {
 	 * @param message The message to replace placeholders in
 	 * @return the message with placeholders replaced
 	 */
-	public String parsePlaceholders(final Player player, final String message) {
-		return PlaceholderAPI.setPlaceholders(player, message);
+	public String setPlaceholders(final Player player, final String message) {
+		if (player == null || message == null) {
+			return message; // If the player or message is null we return the message without replacing placeholders
+		}
+
+		if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+			try {
+				return PlaceholderAPI.setPlaceholders(player, message);
+			} catch (NullPointerException npe) {
+				Bukkit.getLogger().log(Level.SEVERE, "An error occurred while replacing placeholders in a message(Perhaps the message is empty): " + npe.getMessage(), npe);
+			} catch (IllegalArgumentException iae) {
+				Bukkit.getLogger().log(Level.SEVERE, "An error occurred while replacing placeholders in a message(Perhaps you're using invalid placeholders?): " + iae.getMessage(), iae);
+			} catch (RuntimeException re) {
+				Bukkit.getLogger().log(Level.SEVERE, "An error occurred while replacing placeholders in a message: " + re.getMessage(), re);
+			}
+		}
+
+		return message; // If PlaceholderAPI plugin is not install we return the message without replacing placeholders
 	}
 
 	/**
@@ -47,7 +102,7 @@ public final class Utility {
 	 */
 	public void loopMOTD(final Player player) {
 		for (String message : ConfigManager.MOTD.getMessages()) {
-			player.sendMessage(colorize(parsePlaceholders(player, message)));
+			player.sendMessage(colorize(setPlaceholders(player, message)));
 		}
 	}
 
