@@ -67,7 +67,13 @@ public final class Utility {
 	 * @param pitch The pitch of the sound
 	 */
 	public void playSound(final Player player, final Sound sound, final float volume, final float pitch) {
-		player.playSound(player.getLocation(), sound, volume, pitch);
+		try {
+			player.playSound(player.getLocation(), sound, volume, pitch);
+		} catch (IllegalArgumentException iae) {
+			Bukkit.getLogger().warning("Sound \"" + sound.toString() + "\" not supported. Using fallback sound.");
+		} catch (Exception e) {
+			Bukkit.getLogger().warning("An error occurred while playing a sound: " + e.getMessage());
+		}
 	}
 
 	/**
@@ -113,12 +119,20 @@ public final class Utility {
 	 * @param subtitle The subtitle to send
 	 */
 	public void sendTitle(Player player, String title, String subtitle) {
-		player.sendTitle(
-				title,
-				subtitle,
-				ConfigManager.Title.getFadeIn(),
-				ConfigManager.Title.getStay(),
-				ConfigManager.Title.getFadeOut()
-		);
+		try {
+			player.getClass().getMethod("sendTitle", String.class, String.class, int.class, int.class, int.class);
+
+			player.sendTitle(
+					title,
+					subtitle,
+					ConfigManager.Title.getFadeIn(),
+					ConfigManager.Title.getStay(),
+					ConfigManager.Title.getFadeOut()
+			);
+		} catch (NoSuchMethodException e) {
+			Bukkit.getLogger().warning("Title support not available on " + Bukkit.getServer().getVersion() + " version.");
+		} catch (Exception e) {
+			Bukkit.getLogger().warning("An error occurred while sending title to player: " + e.getMessage());
+		}
 	}
 }
