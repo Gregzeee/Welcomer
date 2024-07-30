@@ -31,7 +31,7 @@ Join:
   Enabled: true
 
   # The message that should be sent when a player joins the server for the first time
-  First-Join-Message: "&aWelcome &2%plater% &afor joining &2MyServer &afor the first time ever."
+  First-Join-Message: "&aWelcome &2%player% &afor joining &2MyServer &afor the first time ever."
 
   # The message that should be sent when a player joins the server
   Join-Message: "&aWelcome back to &2myserver.net &2%player%!"
