@@ -44,7 +44,7 @@ Quit:
   # The message that should be sent when a player quits the server
   Quit-Message: "&aGoodbye &2%player% &a, see you next time!"
 
-# This welcomes players with a title message. NB! This only works on version 1.11 and above
+# This welcomes players with a title message.
 Title:
 
   # Whether the Title welcome feature should be enabled
