@@ -6,7 +6,6 @@ import me.gregzee.welcomer.manager.StartupManager;
 import me.gregzee.welcomer.utility.Utility;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
-import java.util.logging.Level;
 
 /**
  * Main class for the plugin
@@ -15,27 +14,26 @@ import java.util.logging.Level;
 public final class Welcomer extends JavaPlugin {
 
     @Getter
-    private static final Utility utility = new Utility();
+    private static Utility utility;
 
     @Getter
-    private static final ConfigManager configManager = new ConfigManager();
+    private static ConfigManager configManager;
 
     @Getter
-	private static Welcomer instance;
+    private static Welcomer instance;
 
     @Override
     public void onEnable() {
         instance = this;
-
-        saveDefaultConfig();
-        getConfig().options().copyDefaults();
-        saveConfig();
+        utility = new Utility();
+        configManager = new ConfigManager();
 
         new StartupManager();
 
         if (getServer().getPluginManager().getPlugin("PlaceholderAPI") == null) {
             getLogger().severe("PlaceholderAPI not found, disabling");
             getServer().getPluginManager().disablePlugin(this);
+            return;
         }
 
         sendEnableMessage();
