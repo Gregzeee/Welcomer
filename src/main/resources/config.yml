@@ -17,7 +17,7 @@ MOTD:
   Enabled: true
 
   # The message that should be sent to the player when they join the server
-  Message:
+  Messages:
     - "&7-=-=-=-=-=-=-=-=-=-"
     - "&aWelcome to &2MyServer"
     - "&aOnline players: &2%online%/20"
