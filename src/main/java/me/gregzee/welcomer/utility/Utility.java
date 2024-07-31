@@ -1,13 +1,13 @@
 package me.gregzee.welcomer.utility;
 
+import com.destroystokyo.paper.Title;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.gregzee.welcomer.manager.ConfigManager;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
-
-import java.util.logging.Level;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -82,24 +82,13 @@ public final class Utility {
 	 * @param message The message to replace placeholders in
 	 * @return the message with placeholders replaced
 	 */
-	public String setPlaceholders(final Player player, final String message) {
-		if (player == null || message == null) {
-			return message; // If the player or message is null we return the message without replacing placeholders
+	public String setPlaceholders(Player player, String message) {
+		if (message == null) {
+			Bukkit.getLogger().warning("Message is null in utility.setPlaceholders()");
+			return "";
 		}
 
-		if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
-			try {
-				return PlaceholderAPI.setPlaceholders(player, message);
-			} catch (NullPointerException npe) {
-				Bukkit.getLogger().log(Level.SEVERE, "An error occurred while replacing placeholders in a message(Perhaps the message is empty): " + npe.getMessage(), npe);
-			} catch (IllegalArgumentException iae) {
-				Bukkit.getLogger().log(Level.SEVERE, "An error occurred while replacing placeholders in a message(Perhaps you're using invalid placeholders?): " + iae.getMessage(), iae);
-			} catch (RuntimeException re) {
-				Bukkit.getLogger().log(Level.SEVERE, "An error occurred while replacing placeholders in a message: " + re.getMessage(), re);
-			}
-		}
-
-		return message; // If PlaceholderAPI plugin is not install we return the message without replacing placeholders
+		return PlaceholderAPI.setPlaceholders(player, message);
 	}
 
 	/**
@@ -107,10 +96,19 @@ public final class Utility {
 	 * @param player The player to send the MOTD to
 	 */
 	public void loopMOTD(final Player player) {
-		for (String message : ConfigManager.MOTD.getMessages()) {
-			player.sendMessage(colorize(setPlaceholders(player, message)));
+		List<String> messages = ConfigManager.MOTD.getMessages();
+
+		if (messages.isEmpty()) {
+			Bukkit.getLogger().info("No MOTD messages found in configuration.");
+		}
+
+		for (String message : messages) {
+			message = colorize(setPlaceholders(player, message));
+			Bukkit.getLogger().info("Sending MOTD message to " + player.getName() + ": " + message);
+			player.sendMessage(message);
 		}
 	}
+
 
 	/**
 	 * Sends a title to a player. FadeIn, Stay and FadeOut are automatically pulled from the config | Just a shorter version of {@link org.bukkit.entity.Player#sendTitle(String, String, int, int, int)}
@@ -119,20 +117,13 @@ public final class Utility {
 	 * @param subtitle The subtitle to send
 	 */
 	public void sendTitle(Player player, String title, String subtitle) {
-		try {
-			player.getClass().getMethod("sendTitle", String.class, String.class, int.class, int.class, int.class);
-
-			player.sendTitle(
-					title,
-					subtitle,
-					ConfigManager.Title.getFadeIn(),
-					ConfigManager.Title.getStay(),
-					ConfigManager.Title.getFadeOut()
-			);
-		} catch (NoSuchMethodException e) {
-			Bukkit.getLogger().warning("Title support not available on " + Bukkit.getServer().getVersion() + " version.");
-		} catch (Exception e) {
-			Bukkit.getLogger().warning("An error occurred while sending title to player: " + e.getMessage());
-		}
+		Title titleObj = Title.builder()
+				.title(title)
+				.subtitle(subtitle)
+				.fadeIn(ConfigManager.Title.getFadeIn())
+				.stay(ConfigManager.Title.getStay())
+				.fadeOut(ConfigManager.Title.getFadeOut())
+				.build();
+		player.sendTitle(titleObj);
 	}
 }
