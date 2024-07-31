@@ -144,7 +144,7 @@ public final class ConfigManager {
 		// Title
 		Title.enabled = getBoolean("Title.Enabled");
 		Title.title = getString("Title.Title");
-		Title.subtitle = getString("Title.Subtitle");
+		Title.subtitle = getString("Title.SubTitle");
 		Title.fadeIn = getInt("Title.FadeIn");
 		Title.stay = getInt("Title.Stay");
 		Title.fadeOut = getInt("Title.FadeOut");
