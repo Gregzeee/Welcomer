@@ -30,15 +30,15 @@ public final class StartupManager {
         }
 
         instance.saveDefaultConfig();
-        Bukkit.getLogger().info("Default config saved.");
+        Bukkit.getLogger().info("[Welcomer] Default config saved.");
 
-        Bukkit.getLogger().info("Copied default config options.");
+        Bukkit.getLogger().info("[Welcomer] Copied default config options.");
         instance.getConfig().options().copyDefaults(true);
 
-        Bukkit.getLogger().info("Config saved.");
+        Bukkit.getLogger().info("[Welcomer] Config saved.");
         instance.saveConfig();
 
-        Bukkit.getLogger().info("Configuration file saved and defaults copied.");
+        Bukkit.getLogger().info("[Welcomer] Configuration file saved and defaults copied.");
 
         // Load the configuration settings
         configManager.load();
