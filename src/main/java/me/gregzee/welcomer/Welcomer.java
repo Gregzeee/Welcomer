@@ -50,11 +50,13 @@ public final class Welcomer extends JavaPlugin {
      */
     private void sendEnableMessage() {
         ConsoleCommandSender console = getServer().getConsoleSender();
+        console.sendMessage("");
         console.sendMessage(utility.colorize("&7-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="));
         console.sendMessage(utility.colorize("                 &eWelcomer"));
         console.sendMessage(utility.colorize("            &eWelcomer has &aenabled"));
         console.sendMessage(utility.colorize("&7-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="));
         console.sendMessage(utility.colorize("               &cMade by Gregzee"));
+        console.sendMessage("");
     }
 
     /**
@@ -62,10 +64,12 @@ public final class Welcomer extends JavaPlugin {
      */
     private void sendDisableMessage() {
         ConsoleCommandSender console = getServer().getConsoleSender();
+        console.sendMessage("");
         console.sendMessage(utility.colorize("&7-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="));
         console.sendMessage(utility.colorize("                 &eWelcomer"));
         console.sendMessage(utility.colorize("            &eWelcomer has &cdisabled"));
         console.sendMessage(utility.colorize("&7-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="));
         console.sendMessage(utility.colorize("               &cMade by Gregzee"));
+        console.sendMessage("");
     }
 }
