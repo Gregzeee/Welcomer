@@ -23,41 +23,71 @@ public final class JoinListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         final Player player = event.getPlayer();
 
-        /* MOTD */
-        if (ConfigManager.MOTD.isEnabled()) {
-            utility.loopMOTD(player);
-        }
+        // Debugging
+        Bukkit.getLogger().info("MOTD Enabled: " + ConfigManager.MOTD.isEnabled());
 
-        /* Join Message */
-        if (ConfigManager.Join.isEnabled()) {
-            final String joinMessage = ConfigManager.Join.getJoinMessage();
+        // Debugging
+        if (ConfigManager.MOTD.getMessages() == null || ConfigManager.MOTD.getMessages().isEmpty()) {
+            Bukkit.getLogger().warning("No MOTD messages found in the configuration.");
 
-            if (player.hasPlayedBefore()) {
-                Bukkit.broadcastMessage(utility.colorize(utility.setPlaceholders(player, joinMessage)));
-            } else {
-                Bukkit.broadcastMessage(utility.colorize(utility.setPlaceholders(player, ConfigManager.Join.getFirstJoinMessage())));
+            /* MOTD */
+            if (ConfigManager.MOTD.isEnabled()) {
+                // loop through the MOTD messages and send them to the player
+                utility.loopMOTD(player);
+            }
+
+            /* Join Message */
+            if (ConfigManager.Join.isEnabled()) {
+
+                final String joinMessage = player.hasPlayedBefore() ? ConfigManager.Join.getJoinMessage() : ConfigManager.Join.getFirstJoinMessage();
+
+                if (joinMessage != null && !joinMessage.isEmpty()) {
+                    final String formattedMessage = utility.setPlaceholders(player, joinMessage);
+                    event.setJoinMessage(utility.colorize(formattedMessage));
+                } else {
+                    Bukkit.getLogger().warning("Join message is null or empty in the configuration.");
+                }
+            }
+
+            /* Title */
+            if (ConfigManager.Title.isEnabled()) {
+                final String title = ConfigManager.Title.getTitle();
+                final String subtitle = ConfigManager.Title.getSubtitle();
+
+                if (title != null && subtitle != null) {
+                    final String formattedTitle = utility.colorize(utility.setPlaceholders(player, title));
+                    final String formattedSubtitle = utility.colorize(utility.setPlaceholders(player, subtitle));
+                    utility.sendTitle(player, formattedTitle, formattedSubtitle);
+                } else {
+                    Bukkit.getLogger().warning("Title or subtitle is null in the configuration.");
+                }
+            }
+
+            /* ActionBar */
+            if (ConfigManager.ActionBar.isEnabled()) {
+                final String actionBarMessage = ConfigManager.ActionBar.getMessage();
+                if (actionBarMessage != null && !actionBarMessage.isEmpty()) {
+                    final String formattedActionBarMessage = utility.colorize(utility.setPlaceholders(player, actionBarMessage));
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(formattedActionBarMessage));
+                } else {
+                    Bukkit.getLogger().warning("ActionBar message is null or empty in the configuration.");
+                }
+            }
+
+            /* Sound */
+            if (ConfigManager.Sound.isEnabled()) {
+                try {
+                    String soundName = ConfigManager.Sound.getSound();
+                    Sound sound = Sound.valueOf(soundName);
+                    float volume = ConfigManager.Sound.getVolume();
+                    float pitch = ConfigManager.Sound.getPitch();
+                    utility.playSound(player, sound, volume, pitch);
+                } catch (IllegalArgumentException e) {
+                    Bukkit.getLogger().warning("Invalid sound specified in config: " + ConfigManager.Sound.getSound());
+                }
             }
         }
-
-        /* Title */
-        if (ConfigManager.Title.isEnabled()) {
-            final String title = utility.colorize(utility.setPlaceholders(player, ConfigManager.Title.getTitle()));
-            final String subtitle = utility.colorize(utility.setPlaceholders(player, ConfigManager.Title.getSubtitle()));
-
-            utility.sendTitle(player, title, subtitle);
-        }
-
-        /* ActionBar */
-        if (ConfigManager.ActionBar.isEnabled()) {
-            final String actionBarMessage = utility.colorize(utility.setPlaceholders(player, ConfigManager.ActionBar.getMessage()));
-
-            // TODO - Move to adventure
-            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(actionBarMessage));
-        }
-
-        /* Sound */
-        if (ConfigManager.Sound.isEnabled()) {
-            player.playSound(player.getLocation(), Sound.valueOf(ConfigManager.Sound.getSound()), ConfigManager.Sound.getVolume(), ConfigManager.Sound.getPitch());
-        }
+        // TODO - Fix this stupid nesting here - ugly
+        // TODO - Make code more readable
     }
 }
