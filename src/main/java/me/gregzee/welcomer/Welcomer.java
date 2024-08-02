@@ -4,8 +4,11 @@ import lombok.Getter;
 import me.gregzee.welcomer.manager.ConfigManager;
 import me.gregzee.welcomer.manager.StartupManager;
 import me.gregzee.welcomer.utility.Utility;
+import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
 
 /**
  * Main class for the plugin
@@ -24,16 +27,23 @@ public final class Welcomer extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        if (getServer().getPluginManager().getPlugin("PlaceholderAPI") == null) {
+            getLogger().severe("PlaceholderAPI not found, disabling");
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
+
         instance = this;
         utility = new Utility();
         configManager = new ConfigManager();
 
         new StartupManager();
 
-        if (getServer().getPluginManager().getPlugin("PlaceholderAPI") == null) {
-            getLogger().severe("PlaceholderAPI not found, disabling");
-            getServer().getPluginManager().disablePlugin(this);
-            return;
+        File configFile = new File(instance.getDataFolder(), "config.yml");
+        if (!configFile.exists()) {
+            Bukkit.getLogger().severe("Configuration file does not exist.");
+        } else {
+            Bukkit.getLogger().info("Configuration file exists");
         }
 
         sendEnableMessage();
