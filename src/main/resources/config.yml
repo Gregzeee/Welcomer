@@ -4,19 +4,17 @@
 #  \        /\  ___/|  |_\  \__(  <_> )  Y Y  \  ___/|  | \/
 #   \__/\  /  \___  >____/\___  >____/|__|_|  /\___  >__|
 #        \/       \/          \/            \/     \/
-
 # The prefix that should be used in the plugin
 Prefix: "&7[&eWelcomer&7]"
 
 NoPermissionMessage: "&cYou do not have permission to use this command."
 
-# Message of the day
+# Message of the Day (MOTD)
 MOTD:
-
   # Whether the MOTD feature is enabled or not
   Enabled: true
 
-  # The message that should be sent to the player when they join the server
+  # The messages to be sent to the player
   Messages:
     - "&7-=-=-=-=-=-=-=-=-=-"
     - "&aWelcome to &2MyServer"
@@ -26,27 +24,24 @@ MOTD:
 
 # Join/Quit messages
 Join:
-
   # Whether the join/quit messages feature should be enabled
   Enabled: true
 
-  # The message that should be sent when a player joins the server for the first time
-  First-Join-Message: "&aWelcome &2%player% &afor joining &2MyServer &afor the first time ever."
+  # The message for a player joining the server for the first time
+  FirstJoinMessage: "&aWelcome &2%player% &afor joining &2MyServer &afor the first time ever."
 
-  # The message that should be sent when a player joins the server
-  Join-Message: "&aWelcome back to &2myserver.net &2%player%!"
+  # The message for a player joining the server
+  JoinMessage: "&aWelcome back to &2myserver.net &2%player%!"
 
 Quit:
-
   # Whether the quit messages feature should be enabled
   Enabled: true
 
-  # The message that should be sent when a player quits the server
-  Quit-Message: "&aGoodbye &2%player% &a, see you next time!"
+  # The message for a player quitting the server
+  QuitMessage: "&aGoodbye &2%player% &a, see you next time!"
 
-# This welcomes players with a title message.
+# Title welcome message
 Title:
-
   # Whether the Title welcome feature should be enabled
   Enabled: true
 
@@ -54,42 +49,40 @@ Title:
   Title: "&aWelcome to &2&nMyserver"
 
   # The subtitle of the title message
-  SubTitle: "&a%player%"
+  Subtitle: "&a%player%"
 
-  # The time that the title should fade in for in ticks. Default: 20
+  # Time for the title to fade in (in ticks)
   FadeIn: 20
 
-  # The time that the title should stay on the plauers screen in ticks. Default: 60
+  # Time for the title to stay on screen (in ticks)
   Stay: 60
 
-  # The time that the title should fade out for in ticks. Default: 20
+  # Time for the title to fade out (in ticks)
   FadeOut: 20
 
+# ActionBar welcome message
 ActionBar:
-
   # Whether the ActionBar welcome feature should be enabled
   Enabled: false
 
-  # The message that should be sent to the player through the action bar.
+  # The message sent to the player through the action bar
   Message: "&aWelcome to &2MyServer &a%player%"
 
-# The sound that should be played when a player joins the server
+# Sound played when a player joins the server
 Sound:
-
   # Whether the sound feature should be enabled
   Enabled: true
 
-  # The sound that should be played | https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
+  # The sound to be played
   Sound: ENTITY_PLAYER_LEVELUP
 
-  # The volume of the sound
+  # Volume of the sound
   Volume: 1.0
 
-  # The pitch of the sound
+  # Pitch of the sound
   Pitch: 1.0
 
-# The GUI that the player will see when they run /welcomer menu
+# GUI configuration
 GUI:
-
   # Whether the GUI feature should be enabled
   Enabled: true
